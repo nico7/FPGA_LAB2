@@ -23,8 +23,8 @@
 module topLevel(
 input clk,
 output [3:0] vgaRed,
-output [3:0] vgaBlue,
 output [3:0] vgaGreen,
+output [3:0] vgaBlue,
 output Hsync,
 output Vsync,
 output ca,
@@ -91,5 +91,17 @@ input btnC
             end
         end
     end
+    
+    
+    vga_top vga_colors(
+    .clk(clk),
+    .rst(rst),
+    .count(counter),
+    .vgaRed(vgaRed),
+    .vgaGreen(vgaGreen),
+    .vgaBlue(vgaBlue),
+    .Hsync(Hsync),
+    .Vsync(Vsync)
+    );
     
 endmodule
