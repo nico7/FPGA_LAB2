@@ -1,0 +1,57 @@
+# Ignore all Vivado-generated files and directories
+*.jou        # Journal files
+*.log        # Log files
+*.tmp        # Temporary files
+*.xpr        # Vivado project files
+*.runs/      # Run directories (synthesis, implementation, etc.)
+*.cache/     # Cache directories
+*.sim/       # Simulation directories
+*.ip_user_files/ # IP user files directory
+*.project/   # Project directory
+*.drc        # Design rule check files
+*.lso        # Log files for synthesis and implementation
+*.synth/     # Synthesis results
+*.impl/      # Implementation results
+*.bit        # Bitstream files
+*.bin        # Binary files
+*.bitstream  # Bitstream files
+*.bmm        # Block Memory Map files
+*.rpt        # Report files
+*.dsa        # Design Suite Artifacts
+*.xml        # Various XML files
+*.hw/        # Hardware files directory
+*.hw_*/      # Hardware files (versioned)
+*.xil        # Xilinx specific files
+
+# Specific Vivado-related files and directories
+VGA.cache/                        # Cache directory
+VGA.hw/                           # Hardware files directory
+VGA.runs/.jobs/                    # Jobs directory
+VGA.runs/impl_1/                   # Implementation results directory
+VGA.runs/synth_1/.Vivado_Synthesis.queue.rst  # Synthesis queue reset
+VGA.runs/synth_1/.vivado.begin.rst # Vivado begin reset
+VGA.runs/synth_1/.vivado.end.rst   # Vivado end reset
+VGA.runs/synth_1/ISEWrap.js        # ISE wrapper JavaScript file
+VGA.runs/synth_1/ISEWrap.sh        # ISE wrapper shell script
+VGA.runs/synth_1/__synthesis_is_complete__ # Synthesis complete marker
+VGA.runs/synth_1/gen_run.xml       # Generated run XML file
+VGA.runs/synth_1/htr.txt           # HTR text file
+VGA.runs/synth_1/incr_synth_reason.pb # Incremental synthesis reason
+VGA.runs/synth_1/project.wdf       # Project WDF file
+VGA.runs/synth_1/rundef.js         # Run definition JavaScript file
+VGA.runs/synth_1/runme.bat         # Run script for Windows
+VGA.runs/synth_1/runme.log         # Run script log file
+VGA.runs/synth_1/runme.sh          # Run script for Unix/Linux
+VGA.runs/synth_1/topLevel.dcp      # Top-level design checkpoint
+VGA.runs/synth_1/topLevel.tcl      # Top-level Tcl script
+VGA.runs/synth_1/topLevel.vds      # Top-level VDS file
+VGA.runs/synth_1/topLevel_utilization_synth.pb # Top-level utilization synthesis
+VGA.runs/synth_1/topLevel_utilization_synth.rpt # Top-level utilization report
+VGA.runs/synth_1/vivado.jou        # Vivado journal file
+VGA.runs/synth_1/vivado.pb         # Vivado protocol buffer file
+VGA.srcs/utils_1/                  # Utility source files
+VGA.xpr                            # Vivado project file
+
+# Include Verilog and XDC files
+!*.v         # Verilog source files
+!*.xdc       # XDC constraint files
