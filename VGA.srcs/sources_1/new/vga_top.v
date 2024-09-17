@@ -78,7 +78,7 @@ output Vsync
         end
     end
     
-    vga_low_level(
+    vga_low_level vga_driver(
     .clk(clk),
     .rst(rst),
     .count(count),

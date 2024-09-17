@@ -70,8 +70,8 @@ end
 
 always @(posedge clk) begin
     if(rst == 1) begin
-        prev_clk <= 1'b0;
-        pres_clk <= 1'b1;
+        prev_clk <= 1'b1;
+        pres_clk <= 1'b0;
     end
     else begin
         if(fast_clk_counter[2] == 1) begin
@@ -125,7 +125,11 @@ always @(posedge clk) begin
 end
 
 always @(posedge clk) begin
-    if(slow_clk == 1) begin
+    if(rst == 1) begin
+        hor_local <= 1;
+        ver_local <= 1;
+    end
+    else if(slow_clk == 1) begin
         if(hor_count > HSYNC_DISPLAY - 1) begin
             if(hor_count < HTHRESH_1) begin
                 hor_local <= 1;
@@ -137,9 +141,24 @@ always @(posedge clk) begin
                 hor_local <= 1;
             end
         end
+        else begin
+            hor_local <= 1;
+        end
         
         if(ver_count > VSYNC_DISPLAY - 1) begin
-            if(ver_count < VTHRESH_1)
+            if(ver_count < VTHRESH_1) begin
+                ver_local <= 1;
+            end
+            else if (ver_count < VTHRESH_2) begin
+                ver_local <= 0;
+            end
+            else begin
+                ver_local <= 1;
+            end
+        end
+        
+        else begin
+            ver_local <= 1;
         end
     end
 end
