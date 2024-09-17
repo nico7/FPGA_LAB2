@@ -31,23 +31,33 @@ output Hsync,
 output Vsync
 );
 
-parameter HSYNC_PW      = 96;
-parameter HSYNC_FP      = 16;
-parameter HSYNC_BP      = 48;
+//parameter HSYNC_PW      = 96;
+//parameter HSYNC_FP      = 16;
+//parameter HSYNC_BP      = 48;
+parameter HSYNC_DISPLAY = 640;
+parameter HTHRESH_1     = 656;
+parameter HTHRESH_2     = 752;
 parameter HSYNC_PERIOD  = 800;
 
-parameter VSYNC_PW      = 2;
-parameter VSYNC_FP      = 10;
-parameter VSYNC_BP      = 29;
+//parameter VSYNC_PW      = 2;
+//parameter VSYNC_FP      = 10;
+//parameter VSYNC_BP      = 29;
+parameter VSYNC_DISPLAY = 480;
+parameter VTHRESH_1     = 490;
+parameter VTHRESH_2     = 492;
 parameter VSYNC_PERIOD  = 521;   
 
 reg pres_clk, prev_clk, slow_clk;
 reg [2:0] fast_clk_counter;
-reg [9:0] hor_counter;
-reg [9:0] ver_counter;
+reg [9:0] hor_count;
+reg [9:0] ver_count;
 reg [11:0] current_color;
 
+reg hor_local, ver_local;
+
 assign {vgaRed, vgaGreen, vgaBlue} = current_color;
+assign Hsync = hor_local;
+assign Vsync = ver_local;
 
 always @(posedge clk) begin
     if(rst == 1) begin
@@ -91,7 +101,47 @@ always @(posedge clk) begin
 end
 
 always @(posedge clk) begin
-    
+    if(rst == 1) begin
+        hor_count <= 0;
+        ver_count <= 0;
+    end
+    else begin
+        if(slow_clk == 1) begin
+            if(hor_count < HSYNC_PERIOD - 1) begin
+                hor_count <= hor_count + 1;
+            end
+            else begin
+                hor_count <= 0;
+                
+                if(ver_count < VSYNC_PERIOD - 1) begin
+                    ver_count <= ver_count + 1;
+                end
+                else begin
+                    ver_count <= 0;
+                end
+            end
+        end
+    end
+end
+
+always @(posedge clk) begin
+    if(slow_clk == 1) begin
+        if(hor_count > HSYNC_DISPLAY - 1) begin
+            if(hor_count < HTHRESH_1) begin
+                hor_local <= 1;
+            end
+            else if (hor_count < HTHRESH_2) begin
+                hor_local <= 0;
+            end
+            else begin
+                hor_local <= 1;
+            end
+        end
+        
+        if(ver_count > VSYNC_DISPLAY - 1) begin
+            if(ver_count < VTHRESH_1)
+        end
+    end
 end
 
 endmodule
