@@ -53,7 +53,7 @@ output Vsync
     reg [11:0] color;
     
     always @(posedge clk) begin
-        if (rst == 1) begin
+        if (rst == 1'b1) begin
             color <= BLACK;
         end
         else begin

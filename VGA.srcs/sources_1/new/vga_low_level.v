@@ -31,36 +31,49 @@ output Hsync,
 output Vsync
 );
 
-//parameter HSYNC_PW      = 96;
-//parameter HSYNC_FP      = 16;
-//parameter HSYNC_BP      = 48;
-parameter HSYNC_DISPLAY = 640;
-parameter HTHRESH_1     = 656;
-parameter HTHRESH_2     = 752;
-parameter HSYNC_PERIOD  = 800;
+parameter HSYNC_PW          = 96;
+parameter HSYNC_FP          = 16;
+parameter HSYNC_BP          = 48;
+parameter HSYNC_DISPLAY     = 640;
+parameter HTHRESH_1         = 688;
+parameter HSYNC_ACTIVE      = 704;
+parameter HSYNC_PERIOD      = 800;
 
-//parameter VSYNC_PW      = 2;
-//parameter VSYNC_FP      = 10;
-//parameter VSYNC_BP      = 29;
-parameter VSYNC_DISPLAY = 480;
-parameter VTHRESH_1     = 490;
-parameter VTHRESH_2     = 492;
-parameter VSYNC_PERIOD  = 521;   
+parameter VSYNC_PW          = 2;
+parameter VSYNC_FP          = 10;
+parameter VSYNC_BP          = 29;
+parameter VSYNC_DISPLAY     = 480;
+//parameter VTHRESH_1       = 490;
+parameter VSYNC_ACTIVE      = 519;
+parameter VSYNC_PERIOD      = 521;   
+parameter SCREEN_CLK_COUNT  = 416800; 
+
+parameter BLACK         = 12'h000;
+
+parameter S_DRAWING     = 1'b0;
+parameter S_VERTING     = 1'b1;
+reg state;
 
 reg pres_clk, prev_clk, slow_clk;
 reg [2:0] fast_clk_counter;
 reg [9:0] hor_count;
 reg [9:0] ver_count;
+reg [19:0] slow_count;
 reg [11:0] current_color;
 
+
 reg hor_local, ver_local;
+reg color_out;
+
+
 
 assign {vgaRed, vgaGreen, vgaBlue} = current_color;
 assign Hsync = hor_local;
 assign Vsync = ver_local;
 
+// Use a clock counter to be used to divide the clock
 always @(posedge clk) begin
-    if(rst == 1) begin
+    if(rst == 1'b1) begin
         fast_clk_counter <= 0;
     end
     else begin
@@ -68,21 +81,21 @@ always @(posedge clk) begin
     end
 end
 
+// Use two registers to tell when slow clock has a new value
 always @(posedge clk) begin
-    if(rst == 1) begin
+    if(rst == 1'b1) begin
         prev_clk <= 1'b1;
         pres_clk <= 1'b0;
     end
     else begin
-        if(fast_clk_counter[2] == 1) begin
-            prev_clk <= pres_clk;
-            pres_clk <= fast_clk_counter[2];
-        end
+        prev_clk <= pres_clk;
+        pres_clk <= fast_clk_counter[2];
     end
 end
 
+// Use the two registers to determine the slow clock
 always @(posedge clk) begin
-    if(rst == 1) begin
+    if(rst == 1'b1) begin
        slow_clk <= 1'b0;
     end
     else begin
@@ -91,76 +104,75 @@ always @(posedge clk) begin
 end
 
 
+// This block makes sure that changing color_out enables or disables the image signal
 always @(posedge clk) begin
-    if(rst == 1) begin
-        current_color <= 12'h000;
+    if(rst == 1'b1) begin
+        current_color <= BLACK;
     end
     else begin
-        current_color <= color;
-    end
-end
-
-always @(posedge clk) begin
-    if(rst == 1) begin
-        hor_count <= 0;
-        ver_count <= 0;
-    end
-    else begin
-        if(slow_clk == 1) begin
-            if(hor_count < HSYNC_PERIOD - 1) begin
-                hor_count <= hor_count + 1;
-            end
-            else begin
-                hor_count <= 0;
-                
-                if(ver_count < VSYNC_PERIOD - 1) begin
-                    ver_count <= ver_count + 1;
-                end
-                else begin
-                    ver_count <= 0;
-                end
-            end
+        if(color_out == 1'b1) begin
+            current_color <= color;
+        end
+        else begin
+            current_color <= BLACK;
         end
     end
 end
 
 always @(posedge clk) begin
-    if(rst == 1) begin
-        hor_local <= 1;
-        ver_local <= 1;
+    if (rst == 1'b1) begin
+        hor_count <= 1'b0;
+        ver_count <= 1'b0;
     end
-    else if(slow_clk == 1) begin
-        if(hor_count > HSYNC_DISPLAY - 1) begin
-            if(hor_count < HTHRESH_1) begin
-                hor_local <= 1;
-            end
-            else if (hor_count < HTHRESH_2) begin
-                hor_local <= 0;
+    if(slow_clk == 1'b1) begin
+        if(hor_count == HSYNC_PERIOD - 1) begin
+            hor_count <= 0;
+            if(ver_count == VSYNC_PERIOD - 1) begin
+                ver_count <= ver_count + 1;
             end
             else begin
-                hor_local <= 1;
+                ver_count <= ver_count + 1;
             end
         end
         else begin
-            hor_local <= 1;
-        end
-        
-        if(ver_count > VSYNC_DISPLAY - 1) begin
-            if(ver_count < VTHRESH_1) begin
-                ver_local <= 1;
-            end
-            else if (ver_count < VTHRESH_2) begin
-                ver_local <= 0;
-            end
-            else begin
-                ver_local <= 1;
-            end
-        end
-        
-        else begin
-            ver_local <= 1;
+            hor_count <= hor_count + 1;
         end
     end
 end
+
+
+always @(posedge clk) begin
+    if(rst == 1'b1) begin
+        hor_local <= 1'b1;
+        ver_local <= 1'b1;
+    end
+    else if(hor_count < HSYNC_ACTIVE) begin
+        hor_local <= 1'b1;
+    end
+    else begin
+        hor_local <= 1'b0;
+    end
+    
+    if(ver_count < VSYNC_ACTIVE) begin
+        ver_local <= 1'b1;
+    end
+    else begin
+        ver_local <= 1'b0;
+    end
+ end
+ 
+ always @(posedge clk) begin
+    if (rst == 1'b1) begin
+        color_out <= 1'b1;
+    end
+    else if (hor_count < HSYNC_DISPLAY && ver_count < VSYNC_DISPLAY) begin
+        color_out <= 1'b1;
+    end
+    else begin
+        color_out <= 1'b0;
+    end
+ end
+ 
+ 
 
 endmodule

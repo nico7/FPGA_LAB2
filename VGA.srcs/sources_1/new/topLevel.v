@@ -62,7 +62,7 @@ input btnC
     );
     
     
-    sev_seg(
+    sev_seg segments(
     .clk(clk),
     .rst(rst),
     .count(counter),

@@ -54,7 +54,7 @@ module sev_seg(
     assign {ca, cb, cc, cd, ce, cf, cg} = cathodes; 
     
     always @(posedge clk) begin
-        if(rst == 1) begin
+        if(rst == 1'b1) begin
             clk_counter <= 0;
         end
         else begin
@@ -63,7 +63,7 @@ module sev_seg(
     end
     
     always @(posedge clk) begin
-        if(rst ==1) begin
+        if(rst == 1'b1) begin
             an_out <= 1'b1;
         end
         else if (clk_counter[17]== 1) begin
