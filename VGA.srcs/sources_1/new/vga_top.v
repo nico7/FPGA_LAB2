@@ -49,6 +49,7 @@ output Vsync
     parameter BLEU     = 12'h08A;
     parameter PINK     = 12'h080;
     parameter GOLD     = 12'hC8A;
+    parameter GRAY     = 12'h555;
     
     reg [11:0] color;
     
@@ -58,6 +59,8 @@ output Vsync
         end
         else begin
             case(count)
+                ZERO: 
+                    color <= GRAY;
                 ONE:
                     color <= BLACK;
                 TWO:

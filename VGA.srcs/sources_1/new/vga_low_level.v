@@ -46,13 +46,10 @@ parameter VSYNC_DISPLAY     = 480;
 //parameter VTHRESH_1       = 490;
 parameter VSYNC_ACTIVE      = 519;
 parameter VSYNC_PERIOD      = 521;   
-parameter SCREEN_CLK_COUNT  = 416800; 
+
 
 parameter BLACK         = 12'h000;
 
-parameter S_DRAWING     = 1'b0;
-parameter S_VERTING     = 1'b1;
-reg state;
 
 reg pres_clk, prev_clk, slow_clk;
 reg [2:0] fast_clk_counter;
@@ -81,27 +78,48 @@ always @(posedge clk) begin
     end
 end
 
+  
+
+    // Clock division logic
+//always @(posedge clk) begin
+//    if (rst == 1'b1) begin
+//        fast_clk_counter <= 0;
+//        prev_clk <= 1'b1;
+//        pres_clk <= 1'b0;
+//    end 
+//    else begin
+//        if (fast_clk_counter == 2) begin
+//            fast_clk_counter <= 0;
+//            pres_clk <= ~pres_clk; // Toggle output clock
+//        end 
+//        else begin
+//            fast_clk_counter <= fast_clk_counter + 1; // Increment counter
+//        end
+//    end
+//    prev_clk <= pres_clk;
+//end
+    
 // Use two registers to tell when slow clock has a new value
-always @(posedge clk) begin
-    if(rst == 1'b1) begin
-        prev_clk <= 1'b1;
-        pres_clk <= 1'b0;
-    end
-    else begin
-        prev_clk <= pres_clk;
-        pres_clk <= fast_clk_counter[2];
-    end
-end
+//always @(posedge clk) begin
+//    if(rst == 1'b1) begin
+//        prev_clk <= 1'b1;
+//        pres_clk <= 1'b0;
+//    end
+//    else begin
+//        prev_clk <= pres_clk;
+//        pres_clk <= fast_clk_counter[2];
+//    end
+//end
 
 // Use the two registers to determine the slow clock
-always @(posedge clk) begin
-    if(rst == 1'b1) begin
-       slow_clk <= 1'b0;
-    end
-    else begin
-        slow_clk <= (~prev_clk) & (pres_clk);
-    end
-end
+//always @(posedge clk) begin
+//    if(rst == 1'b1) begin
+//       slow_clk <= 1'b0;
+//    end
+//    else begin
+//        slow_clk <= (~prev_clk) & (pres_clk);
+//    end
+//end
 
 
 // This block makes sure that changing color_out enables or disables the image signal
@@ -119,16 +137,16 @@ always @(posedge clk) begin
     end
 end
 
-always @(posedge clk) begin
+always @(posedge fast_clk_counter[1]) begin
     if (rst == 1'b1) begin
         hor_count <= 1'b0;
         ver_count <= 1'b0;
     end
-    if(slow_clk == 1'b1) begin
+   // if(slow_clk == 1'b1) begin
         if(hor_count == HSYNC_PERIOD - 1) begin
             hor_count <= 0;
             if(ver_count == VSYNC_PERIOD - 1) begin
-                ver_count <= ver_count + 1;
+                ver_count <= 0;
             end
             else begin
                 ver_count <= ver_count + 1;
@@ -137,7 +155,7 @@ always @(posedge clk) begin
         else begin
             hor_count <= hor_count + 1;
         end
-    end
+   // end
 end
 
 
@@ -165,7 +183,7 @@ always @(posedge clk) begin
     if (rst == 1'b1) begin
         color_out <= 1'b1;
     end
-    else if (hor_count < HSYNC_DISPLAY && ver_count < VSYNC_DISPLAY) begin
+    else if (hor_count < HSYNC_ACTIVE && ver_count < VSYNC_ACTIVE) begin
         color_out <= 1'b1;
     end
     else begin
