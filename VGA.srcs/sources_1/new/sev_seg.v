@@ -1,4 +1,3 @@
-`timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -23,7 +22,7 @@
 module sev_seg(
     input clk,
     input rst,
-    input [4:0] count,
+    input [3:0] count,
     output anode,
     output ca,
     output cb,

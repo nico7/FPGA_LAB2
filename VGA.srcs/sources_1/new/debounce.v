@@ -1,4 +1,3 @@
-`timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -40,7 +39,7 @@ module debounce(
     end 
     
     always @(posedge clk) begin
-        if(clk_counter[17:0] == 18'h200000) begin
+        if(clk_counter[17:0] == 18'h20000) begin
             button_counter <= {button_counter[WIDTH-2:0], button};
         end
     end

@@ -2,10 +2,10 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-// Date        : Thu Sep 19 00:28:27 2024
+// Date        : Thu Sep 19 00:56:37 2024
 // Host        : LAPTOP-QJ9BJU4G running 64-bit major release  (build 9200)
 // Command     : write_verilog -mode funcsim -nolib -force -file
-//               C:/Users/Nico/Documents/Projects/Firmware/FPGA_LAB2/VGA.sim/sim_1/synth/func/xsim/topLevel_func_synth.v
+//               C:/Users/Nico/Documents/Projects/Firmware/FPGA_LAB2/VGA.sim/sim_1/impl/func/xsim/topLevel_tb_func_impl.v
 // Design      : topLevel
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -49,36 +49,23 @@ module debounce
   wire button_pressed_i_9_n_0;
   wire \clk_counter[0]_i_2_n_0 ;
   wire \clk_counter_reg[0]_i_1_n_0 ;
-  wire \clk_counter_reg[0]_i_1_n_1 ;
-  wire \clk_counter_reg[0]_i_1_n_2 ;
-  wire \clk_counter_reg[0]_i_1_n_3 ;
   wire \clk_counter_reg[0]_i_1_n_4 ;
   wire \clk_counter_reg[0]_i_1_n_5 ;
   wire \clk_counter_reg[0]_i_1_n_6 ;
   wire \clk_counter_reg[0]_i_1_n_7 ;
   wire \clk_counter_reg[12]_i_1_n_0 ;
-  wire \clk_counter_reg[12]_i_1_n_1 ;
-  wire \clk_counter_reg[12]_i_1_n_2 ;
-  wire \clk_counter_reg[12]_i_1_n_3 ;
   wire \clk_counter_reg[12]_i_1_n_4 ;
   wire \clk_counter_reg[12]_i_1_n_5 ;
   wire \clk_counter_reg[12]_i_1_n_6 ;
   wire \clk_counter_reg[12]_i_1_n_7 ;
-  wire \clk_counter_reg[16]_i_1_n_3 ;
   wire \clk_counter_reg[16]_i_1_n_6 ;
   wire \clk_counter_reg[16]_i_1_n_7 ;
   wire \clk_counter_reg[4]_i_1_n_0 ;
-  wire \clk_counter_reg[4]_i_1_n_1 ;
-  wire \clk_counter_reg[4]_i_1_n_2 ;
-  wire \clk_counter_reg[4]_i_1_n_3 ;
   wire \clk_counter_reg[4]_i_1_n_4 ;
   wire \clk_counter_reg[4]_i_1_n_5 ;
   wire \clk_counter_reg[4]_i_1_n_6 ;
   wire \clk_counter_reg[4]_i_1_n_7 ;
   wire \clk_counter_reg[8]_i_1_n_0 ;
-  wire \clk_counter_reg[8]_i_1_n_1 ;
-  wire \clk_counter_reg[8]_i_1_n_2 ;
-  wire \clk_counter_reg[8]_i_1_n_3 ;
   wire \clk_counter_reg[8]_i_1_n_4 ;
   wire \clk_counter_reg[8]_i_1_n_5 ;
   wire \clk_counter_reg[8]_i_1_n_6 ;
@@ -87,8 +74,12 @@ module debounce
   wire rst;
   wire [17:0]\rst_debounce/clk_counter_reg ;
   wire [0:0]\ver_count_reg[0] ;
-  wire [3:1]\NLW_clk_counter_reg[16]_i_1_CO_UNCONNECTED ;
+  wire [2:0]\NLW_clk_counter_reg[0]_i_1_CO_UNCONNECTED ;
+  wire [2:0]\NLW_clk_counter_reg[12]_i_1_CO_UNCONNECTED ;
+  wire [3:0]\NLW_clk_counter_reg[16]_i_1_CO_UNCONNECTED ;
   wire [3:2]\NLW_clk_counter_reg[16]_i_1_O_UNCONNECTED ;
+  wire [2:0]\NLW_clk_counter_reg[4]_i_1_CO_UNCONNECTED ;
+  wire [2:0]\NLW_clk_counter_reg[8]_i_1_CO_UNCONNECTED ;
 
   LUT3 #(
     .INIT(8'h02)) 
@@ -449,7 +440,7 @@ module debounce
         .R(1'b0));
   CARRY4 \clk_counter_reg[0]_i_1 
        (.CI(1'b0),
-        .CO({\clk_counter_reg[0]_i_1_n_0 ,\clk_counter_reg[0]_i_1_n_1 ,\clk_counter_reg[0]_i_1_n_2 ,\clk_counter_reg[0]_i_1_n_3 }),
+        .CO({\clk_counter_reg[0]_i_1_n_0 ,\NLW_clk_counter_reg[0]_i_1_CO_UNCONNECTED [2:0]}),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b1}),
         .O({\clk_counter_reg[0]_i_1_n_4 ,\clk_counter_reg[0]_i_1_n_5 ,\clk_counter_reg[0]_i_1_n_6 ,\clk_counter_reg[0]_i_1_n_7 }),
@@ -480,7 +471,7 @@ module debounce
         .R(1'b0));
   CARRY4 \clk_counter_reg[12]_i_1 
        (.CI(\clk_counter_reg[8]_i_1_n_0 ),
-        .CO({\clk_counter_reg[12]_i_1_n_0 ,\clk_counter_reg[12]_i_1_n_1 ,\clk_counter_reg[12]_i_1_n_2 ,\clk_counter_reg[12]_i_1_n_3 }),
+        .CO({\clk_counter_reg[12]_i_1_n_0 ,\NLW_clk_counter_reg[12]_i_1_CO_UNCONNECTED [2:0]}),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({\clk_counter_reg[12]_i_1_n_4 ,\clk_counter_reg[12]_i_1_n_5 ,\clk_counter_reg[12]_i_1_n_6 ,\clk_counter_reg[12]_i_1_n_7 }),
@@ -519,7 +510,7 @@ module debounce
         .R(1'b0));
   CARRY4 \clk_counter_reg[16]_i_1 
        (.CI(\clk_counter_reg[12]_i_1_n_0 ),
-        .CO({\NLW_clk_counter_reg[16]_i_1_CO_UNCONNECTED [3:1],\clk_counter_reg[16]_i_1_n_3 }),
+        .CO(\NLW_clk_counter_reg[16]_i_1_CO_UNCONNECTED [3:0]),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({\NLW_clk_counter_reg[16]_i_1_O_UNCONNECTED [3:2],\clk_counter_reg[16]_i_1_n_6 ,\clk_counter_reg[16]_i_1_n_7 }),
@@ -566,7 +557,7 @@ module debounce
         .R(1'b0));
   CARRY4 \clk_counter_reg[4]_i_1 
        (.CI(\clk_counter_reg[0]_i_1_n_0 ),
-        .CO({\clk_counter_reg[4]_i_1_n_0 ,\clk_counter_reg[4]_i_1_n_1 ,\clk_counter_reg[4]_i_1_n_2 ,\clk_counter_reg[4]_i_1_n_3 }),
+        .CO({\clk_counter_reg[4]_i_1_n_0 ,\NLW_clk_counter_reg[4]_i_1_CO_UNCONNECTED [2:0]}),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({\clk_counter_reg[4]_i_1_n_4 ,\clk_counter_reg[4]_i_1_n_5 ,\clk_counter_reg[4]_i_1_n_6 ,\clk_counter_reg[4]_i_1_n_7 }),
@@ -605,7 +596,7 @@ module debounce
         .R(1'b0));
   CARRY4 \clk_counter_reg[8]_i_1 
        (.CI(\clk_counter_reg[4]_i_1_n_0 ),
-        .CO({\clk_counter_reg[8]_i_1_n_0 ,\clk_counter_reg[8]_i_1_n_1 ,\clk_counter_reg[8]_i_1_n_2 ,\clk_counter_reg[8]_i_1_n_3 }),
+        .CO({\clk_counter_reg[8]_i_1_n_0 ,\NLW_clk_counter_reg[8]_i_1_CO_UNCONNECTED [2:0]}),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({\clk_counter_reg[8]_i_1_n_4 ,\clk_counter_reg[8]_i_1_n_5 ,\clk_counter_reg[8]_i_1_n_6 ,\clk_counter_reg[8]_i_1_n_7 }),
@@ -1426,36 +1417,23 @@ module sev_seg
   wire \cathodes_reg[5]_2 ;
   wire \clk_counter[0]_i_2__0_n_0 ;
   wire \clk_counter_reg[0]_i_1__0_n_0 ;
-  wire \clk_counter_reg[0]_i_1__0_n_1 ;
-  wire \clk_counter_reg[0]_i_1__0_n_2 ;
-  wire \clk_counter_reg[0]_i_1__0_n_3 ;
   wire \clk_counter_reg[0]_i_1__0_n_4 ;
   wire \clk_counter_reg[0]_i_1__0_n_5 ;
   wire \clk_counter_reg[0]_i_1__0_n_6 ;
   wire \clk_counter_reg[0]_i_1__0_n_7 ;
   wire \clk_counter_reg[12]_i_1__0_n_0 ;
-  wire \clk_counter_reg[12]_i_1__0_n_1 ;
-  wire \clk_counter_reg[12]_i_1__0_n_2 ;
-  wire \clk_counter_reg[12]_i_1__0_n_3 ;
   wire \clk_counter_reg[12]_i_1__0_n_4 ;
   wire \clk_counter_reg[12]_i_1__0_n_5 ;
   wire \clk_counter_reg[12]_i_1__0_n_6 ;
   wire \clk_counter_reg[12]_i_1__0_n_7 ;
-  wire \clk_counter_reg[16]_i_1__0_n_3 ;
   wire \clk_counter_reg[16]_i_1__0_n_6 ;
   wire \clk_counter_reg[16]_i_1__0_n_7 ;
   wire \clk_counter_reg[4]_i_1__0_n_0 ;
-  wire \clk_counter_reg[4]_i_1__0_n_1 ;
-  wire \clk_counter_reg[4]_i_1__0_n_2 ;
-  wire \clk_counter_reg[4]_i_1__0_n_3 ;
   wire \clk_counter_reg[4]_i_1__0_n_4 ;
   wire \clk_counter_reg[4]_i_1__0_n_5 ;
   wire \clk_counter_reg[4]_i_1__0_n_6 ;
   wire \clk_counter_reg[4]_i_1__0_n_7 ;
   wire \clk_counter_reg[8]_i_1__0_n_0 ;
-  wire \clk_counter_reg[8]_i_1__0_n_1 ;
-  wire \clk_counter_reg[8]_i_1__0_n_2 ;
-  wire \clk_counter_reg[8]_i_1__0_n_3 ;
   wire \clk_counter_reg[8]_i_1__0_n_4 ;
   wire \clk_counter_reg[8]_i_1__0_n_5 ;
   wire \clk_counter_reg[8]_i_1__0_n_6 ;
@@ -1479,8 +1457,12 @@ module sev_seg
   wire \clk_counter_reg_n_0_[9] ;
   wire p_0_in;
   wire rst;
-  wire [3:1]\NLW_clk_counter_reg[16]_i_1__0_CO_UNCONNECTED ;
+  wire [2:0]\NLW_clk_counter_reg[0]_i_1__0_CO_UNCONNECTED ;
+  wire [2:0]\NLW_clk_counter_reg[12]_i_1__0_CO_UNCONNECTED ;
+  wire [3:0]\NLW_clk_counter_reg[16]_i_1__0_CO_UNCONNECTED ;
   wire [3:2]\NLW_clk_counter_reg[16]_i_1__0_O_UNCONNECTED ;
+  wire [2:0]\NLW_clk_counter_reg[4]_i_1__0_CO_UNCONNECTED ;
+  wire [2:0]\NLW_clk_counter_reg[8]_i_1__0_CO_UNCONNECTED ;
 
   LUT2 #(
     .INIT(4'h6)) 
@@ -1622,7 +1604,7 @@ module sev_seg
   (* ADDER_THRESHOLD = "11" *) 
   CARRY4 \clk_counter_reg[0]_i_1__0 
        (.CI(1'b0),
-        .CO({\clk_counter_reg[0]_i_1__0_n_0 ,\clk_counter_reg[0]_i_1__0_n_1 ,\clk_counter_reg[0]_i_1__0_n_2 ,\clk_counter_reg[0]_i_1__0_n_3 }),
+        .CO({\clk_counter_reg[0]_i_1__0_n_0 ,\NLW_clk_counter_reg[0]_i_1__0_CO_UNCONNECTED [2:0]}),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b1}),
         .O({\clk_counter_reg[0]_i_1__0_n_4 ,\clk_counter_reg[0]_i_1__0_n_5 ,\clk_counter_reg[0]_i_1__0_n_6 ,\clk_counter_reg[0]_i_1__0_n_7 }),
@@ -1654,7 +1636,7 @@ module sev_seg
   (* ADDER_THRESHOLD = "11" *) 
   CARRY4 \clk_counter_reg[12]_i_1__0 
        (.CI(\clk_counter_reg[8]_i_1__0_n_0 ),
-        .CO({\clk_counter_reg[12]_i_1__0_n_0 ,\clk_counter_reg[12]_i_1__0_n_1 ,\clk_counter_reg[12]_i_1__0_n_2 ,\clk_counter_reg[12]_i_1__0_n_3 }),
+        .CO({\clk_counter_reg[12]_i_1__0_n_0 ,\NLW_clk_counter_reg[12]_i_1__0_CO_UNCONNECTED [2:0]}),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({\clk_counter_reg[12]_i_1__0_n_4 ,\clk_counter_reg[12]_i_1__0_n_5 ,\clk_counter_reg[12]_i_1__0_n_6 ,\clk_counter_reg[12]_i_1__0_n_7 }),
@@ -1694,7 +1676,7 @@ module sev_seg
   (* ADDER_THRESHOLD = "11" *) 
   CARRY4 \clk_counter_reg[16]_i_1__0 
        (.CI(\clk_counter_reg[12]_i_1__0_n_0 ),
-        .CO({\NLW_clk_counter_reg[16]_i_1__0_CO_UNCONNECTED [3:1],\clk_counter_reg[16]_i_1__0_n_3 }),
+        .CO(\NLW_clk_counter_reg[16]_i_1__0_CO_UNCONNECTED [3:0]),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({\NLW_clk_counter_reg[16]_i_1__0_O_UNCONNECTED [3:2],\clk_counter_reg[16]_i_1__0_n_6 ,\clk_counter_reg[16]_i_1__0_n_7 }),
@@ -1742,7 +1724,7 @@ module sev_seg
   (* ADDER_THRESHOLD = "11" *) 
   CARRY4 \clk_counter_reg[4]_i_1__0 
        (.CI(\clk_counter_reg[0]_i_1__0_n_0 ),
-        .CO({\clk_counter_reg[4]_i_1__0_n_0 ,\clk_counter_reg[4]_i_1__0_n_1 ,\clk_counter_reg[4]_i_1__0_n_2 ,\clk_counter_reg[4]_i_1__0_n_3 }),
+        .CO({\clk_counter_reg[4]_i_1__0_n_0 ,\NLW_clk_counter_reg[4]_i_1__0_CO_UNCONNECTED [2:0]}),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({\clk_counter_reg[4]_i_1__0_n_4 ,\clk_counter_reg[4]_i_1__0_n_5 ,\clk_counter_reg[4]_i_1__0_n_6 ,\clk_counter_reg[4]_i_1__0_n_7 }),
@@ -1782,7 +1764,7 @@ module sev_seg
   (* ADDER_THRESHOLD = "11" *) 
   CARRY4 \clk_counter_reg[8]_i_1__0 
        (.CI(\clk_counter_reg[4]_i_1__0_n_0 ),
-        .CO({\clk_counter_reg[8]_i_1__0_n_0 ,\clk_counter_reg[8]_i_1__0_n_1 ,\clk_counter_reg[8]_i_1__0_n_2 ,\clk_counter_reg[8]_i_1__0_n_3 }),
+        .CO({\clk_counter_reg[8]_i_1__0_n_0 ,\NLW_clk_counter_reg[8]_i_1__0_CO_UNCONNECTED [2:0]}),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({\clk_counter_reg[8]_i_1__0_n_4 ,\clk_counter_reg[8]_i_1__0_n_5 ,\clk_counter_reg[8]_i_1__0_n_6 ,\clk_counter_reg[8]_i_1__0_n_7 }),
@@ -1797,7 +1779,10 @@ module sev_seg
         .R(rst));
 endmodule
 
+(* ECO_CHECKSUM = "ccb0910b" *) 
 (* NotValidForBitStream *)
+(* \DesignAttr:ENABLE_NOC_NETLIST_VIEW  *) 
+(* \DesignAttr:ENABLE_AIE_NETLIST_VIEW  *) 
 module topLevel
    (clk,
     vgaRed,
@@ -1872,6 +1857,10 @@ module topLevel
   wire \counter_reg_n_0_[0] ;
   wire \counter_reg_n_0_[1] ;
   wire \counter_reg_n_0_[2] ;
+  wire lopt;
+  wire lopt_1;
+  wire lopt_2;
+  wire lopt_3;
   wire rst;
   wire rst_debounce_n_0;
   wire rst_debounce_n_1;
@@ -1884,6 +1873,7 @@ module topLevel
   wire [3:1]vgaRed_OBUF;
   wire vga_colors_n_2;
   wire \vga_driver/ver_count ;
+  wire NLW_vga_colors_lopt_4_UNCONNECTED;
 
   OBUF Hsync_OBUF_inst
        (.I(Hsync_OBUF),
@@ -1986,30 +1976,35 @@ module topLevel
         .\cathodes_reg[5]_1 (\counter_reg_n_0_[0] ),
         .\cathodes_reg[5]_2 (\counter_reg_n_0_[1] ),
         .rst(rst));
+  (* OPT_MODIFIED = "SWEEP" *) 
   OBUF \vgaBlue_OBUF[0]_inst 
-       (.I(vgaBlue_OBUF[0]),
+       (.I(lopt),
         .O(vgaBlue[0]));
   OBUF \vgaBlue_OBUF[1]_inst 
        (.I(vgaBlue_OBUF[1]),
         .O(vgaBlue[1]));
+  (* OPT_MODIFIED = "SWEEP" *) 
   OBUF \vgaBlue_OBUF[2]_inst 
-       (.I(vgaBlue_OBUF[0]),
+       (.I(lopt_1),
         .O(vgaBlue[2]));
   OBUF \vgaBlue_OBUF[3]_inst 
        (.I(vgaBlue_OBUF[3]),
         .O(vgaBlue[3]));
+  (* OPT_MODIFIED = "SWEEP" *) 
   OBUF \vgaGreen_OBUF[0]_inst 
-       (.I(vgaBlue_OBUF[0]),
+       (.I(lopt_2),
         .O(vgaGreen[0]));
   OBUF \vgaGreen_OBUF[1]_inst 
        (.I(vgaGreen_OBUF[1]),
         .O(vgaGreen[1]));
+  (* OPT_MODIFIED = "SWEEP" *) 
   OBUF \vgaGreen_OBUF[2]_inst 
-       (.I(vgaBlue_OBUF[0]),
+       (.I(lopt_3),
         .O(vgaGreen[2]));
   OBUF \vgaGreen_OBUF[3]_inst 
        (.I(vgaGreen_OBUF[3]),
         .O(vgaGreen[3]));
+  (* OPT_MODIFIED = "SWEEP" *) 
   OBUF \vgaRed_OBUF[0]_inst 
        (.I(vgaBlue_OBUF[0]),
         .O(vgaRed[0]));
@@ -2031,6 +2026,11 @@ module topLevel
         .\color_reg[7]_0 (\counter_reg_n_0_[2] ),
         .\color_reg[7]_1 (\counter_reg_n_0_[0] ),
         .\color_reg[7]_2 (\counter_reg_n_0_[1] ),
+        .lopt(lopt),
+        .lopt_1(lopt_1),
+        .lopt_2(lopt_2),
+        .lopt_3(lopt_3),
+        .lopt_4(NLW_vga_colors_lopt_4_UNCONNECTED),
         .rst(rst),
         .\ver_count_reg[0] (\vga_driver/ver_count ));
 endmodule
@@ -2043,7 +2043,12 @@ module vga_low_level
     rst,
     CLK,
     Q,
-    \ver_count_reg[0]_0 );
+    \ver_count_reg[0]_0 ,
+    lopt,
+    lopt_1,
+    lopt_2,
+    lopt_3,
+    lopt_4);
   output Hsync_OBUF;
   output Vsync_OBUF;
   output [0:0]E;
@@ -2052,6 +2057,11 @@ module vga_low_level
   input CLK;
   input [7:0]Q;
   input [0:0]\ver_count_reg[0]_0 ;
+  output lopt;
+  output lopt_1;
+  output lopt_2;
+  output lopt_3;
+  output lopt_4;
 
   wire CLK;
   wire [0:0]E;
@@ -2069,6 +2079,10 @@ module vga_low_level
   wire \current_color[8]_i_1_n_0 ;
   wire \current_color[9]_i_1_n_0 ;
   wire [7:0]\current_color_reg[11]_0 ;
+  wire \current_color_reg[8]_lopt_replica_1 ;
+  wire \current_color_reg[8]_lopt_replica_2_1 ;
+  wire \current_color_reg[8]_lopt_replica_3_1 ;
+  wire \current_color_reg[8]_lopt_replica_4_1 ;
   wire \fast_clk_counter[0]_i_1_n_0 ;
   wire \fast_clk_counter[1]_i_1_n_0 ;
   wire \fast_clk_counter_reg_n_0_[0] ;
@@ -2097,6 +2111,10 @@ module vga_low_level
   wire ver_local_i_1_n_0;
   wire ver_local_i_2_n_0;
 
+  assign lopt = \current_color_reg[8]_lopt_replica_1 ;
+  assign lopt_1 = \current_color_reg[8]_lopt_replica_2_1 ;
+  assign lopt_2 = \current_color_reg[8]_lopt_replica_3_1 ;
+  assign lopt_3 = \current_color_reg[8]_lopt_replica_4_1 ;
   (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT5 #(
     .INIT(32'h002AAAAA)) 
@@ -2157,14 +2175,12 @@ module vga_low_level
        (.I0(color_out),
         .I1(Q[3]),
         .O(\current_color[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \current_color[8]_i_1 
        (.I0(color_out),
         .I1(Q[4]),
         .O(\current_color[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \current_color[9]_i_1 
@@ -2227,6 +2243,46 @@ module vga_low_level
         .D(\current_color[8]_i_1_n_0 ),
         .Q(\current_color_reg[11]_0 [4]),
         .R(rst));
+  (* OPT_INSERTED_REPDRIVER *) 
+  (* OPT_MODIFIED = "SWEEP" *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \current_color_reg[8]_lopt_replica 
+       (.C(CLK),
+        .CE(1'b1),
+        .D(\current_color[8]_i_1_n_0 ),
+        .Q(\current_color_reg[8]_lopt_replica_1 ),
+        .R(rst));
+  (* OPT_INSERTED_REPDRIVER *) 
+  (* OPT_MODIFIED = "SWEEP" *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \current_color_reg[8]_lopt_replica_2 
+       (.C(CLK),
+        .CE(1'b1),
+        .D(\current_color[8]_i_1_n_0 ),
+        .Q(\current_color_reg[8]_lopt_replica_2_1 ),
+        .R(rst));
+  (* OPT_INSERTED_REPDRIVER *) 
+  (* OPT_MODIFIED = "SWEEP" *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \current_color_reg[8]_lopt_replica_3 
+       (.C(CLK),
+        .CE(1'b1),
+        .D(\current_color[8]_i_1_n_0 ),
+        .Q(\current_color_reg[8]_lopt_replica_3_1 ),
+        .R(rst));
+  (* OPT_INSERTED_REPDRIVER *) 
+  (* OPT_MODIFIED = "SWEEP" *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \current_color_reg[8]_lopt_replica_4 
+       (.C(CLK),
+        .CE(1'b1),
+        .D(\current_color[8]_i_1_n_0 ),
+        .Q(\current_color_reg[8]_lopt_replica_4_1 ),
+        .R(rst));
   FDRE #(
     .INIT(1'b0)) 
     \current_color_reg[9] 
@@ -2235,12 +2291,14 @@ module vga_low_level
         .D(\current_color[9]_i_1_n_0 ),
         .Q(\current_color_reg[11]_0 [5]),
         .R(rst));
+  (* \PinAttr:I0:HOLD_DETOUR  = "193" *) 
   (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \fast_clk_counter[0]_i_1 
        (.I0(\fast_clk_counter_reg_n_0_[0] ),
         .O(\fast_clk_counter[0]_i_1_n_0 ));
+  (* \PinAttr:I0:HOLD_DETOUR  = "193" *) 
   (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT2 #(
     .INIT(4'h6)) 
@@ -2294,7 +2352,6 @@ module vga_low_level
         .I2(hor_count[2]),
         .I3(hor_count[3]),
         .O(p_2_in[3]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT5 #(
     .INIT(32'h6AAAAAAA)) 
     \hor_count[4]_i_1 
@@ -2358,7 +2415,6 @@ module vga_low_level
         .I3(hor_count[7]),
         .I4(hor_count[8]),
         .O(p_2_in[9]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT5 #(
     .INIT(32'h80000000)) 
     \hor_count[9]_i_3 
@@ -2475,7 +2531,6 @@ module vga_low_level
         .D(hor_local_i_1_n_0),
         .Q(Hsync_OBUF),
         .S(rst));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT5 #(
     .INIT(32'h55555545)) 
     \ver_count[0]_i_1 
@@ -2572,7 +2627,6 @@ module vga_low_level
         .I4(ver_count[8]),
         .I5(ver_count[9]),
         .O(\ver_count[9]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT5 #(
     .INIT(32'hFFFFFFEF)) 
     \ver_count[9]_i_3 
@@ -2711,7 +2765,12 @@ module vga_top
     \color_reg[7]_0 ,
     \color_reg[7]_1 ,
     \color_reg[7]_2 ,
-    \ver_count_reg[0] );
+    \ver_count_reg[0] ,
+    lopt,
+    lopt_1,
+    lopt_2,
+    lopt_3,
+    lopt_4);
   output Hsync_OBUF;
   output Vsync_OBUF;
   output [0:0]SR;
@@ -2722,6 +2781,11 @@ module vga_top
   input \color_reg[7]_1 ;
   input \color_reg[7]_2 ;
   input [0:0]\ver_count_reg[0] ;
+  output lopt;
+  output lopt_1;
+  output lopt_2;
+  output lopt_3;
+  output lopt_4;
 
   wire CLK;
   wire Hsync_OBUF;
@@ -2740,8 +2804,13 @@ module vga_top
   wire \color_reg[7]_0 ;
   wire \color_reg[7]_1 ;
   wire \color_reg[7]_2 ;
+  wire lopt;
+  wire lopt_1;
+  wire lopt_2;
+  wire lopt_3;
   wire rst;
   wire [0:0]\ver_count_reg[0] ;
+  wire NLW_vga_driver_lopt_4_UNCONNECTED;
 
   (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT3 #(
@@ -2877,6 +2946,11 @@ module vga_top
         .Q({color[11:7],color[5],color[3],color[1]}),
         .Vsync_OBUF(Vsync_OBUF),
         .\current_color_reg[11]_0 (Q),
+        .lopt(lopt),
+        .lopt_1(lopt_1),
+        .lopt_2(lopt_2),
+        .lopt_3(lopt_3),
+        .lopt_4(NLW_vga_driver_lopt_4_UNCONNECTED),
         .rst(rst),
         .\ver_count_reg[0]_0 (\ver_count_reg[0] ));
 endmodule

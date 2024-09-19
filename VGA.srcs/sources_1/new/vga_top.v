@@ -1,4 +1,3 @@
-`timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -42,49 +41,62 @@ output Vsync
     parameter EIGHT = 4'h8;
     parameter NINE  = 4'h9;
     
+    parameter GRAY     = 12'h555;
     parameter BLACK    = 12'h000;
     parameter RED      = 12'hE00;
     parameter WHITE    = 12'hFFF;
     parameter GREEN    = 12'h082;
     parameter BLEU     = 12'h08A;
-    parameter PINK     = 12'h080;
-    parameter GOLD     = 12'hC8A;
-    parameter GRAY     = 12'h555;
+    parameter GOLD     = 12'hB90;
+    parameter PINK     =  12'hC8A;
+    
     
     reg [11:0] color;
     
     always @(posedge clk) begin
-        if (rst == 1'b1) begin
-            color <= BLACK;
-        end
-        else begin
+    //    else begin
             case(count)
                 ZERO: 
+                begin
                     color <= GRAY;
+                end
                 ONE:
+                begin
                     color <= BLACK;
+                end
                 TWO:
+                begin
                     color <= RED;
+                end
                 THREE:
+                begin
                     color <= WHITE;
+                end
                 FOUR:
-                    color <= GREEN;
-                FIVE:
-                    color <= BLEU;
-                SIX:
-                    color <= PINK;
-                SEVEN:
+                begin
                     color <= GOLD;
+                end
+                FIVE:
+                begin
+                    color <= BLEU;
+                end
+                SIX:
+                begin
+                    color <= GREEN;
+                end
+                SEVEN:
+                begin
+                    color <= PINK;
+                end
                 default:
                     color <= BLACK;
             endcase
-        end
+        //end
     end
     
     vga_low_level vga_driver(
     .clk(clk),
     .rst(rst),
-    .count(count),
     .color(color),
     .vgaRed(vgaRed),
     .vgaGreen(vgaGreen),

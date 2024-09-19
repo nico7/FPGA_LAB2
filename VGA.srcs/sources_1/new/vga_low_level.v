@@ -1,4 +1,3 @@
-`timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -22,7 +21,6 @@
 module vga_low_level(
 input clk,
 input rst,
-input [3:0] count,
 input [11:0] color,
 output [3:0] vgaRed,
 output [3:0] vgaGreen,
@@ -51,11 +49,11 @@ parameter VSYNC_PERIOD      = 521;
 parameter BLACK         = 12'h000;
 
 
-reg pres_clk, prev_clk, slow_clk;
+//reg pres_clk, prev_clk, slow_clk;
 reg [2:0] fast_clk_counter;
 reg [9:0] hor_count;
 reg [9:0] ver_count;
-reg [19:0] slow_count;
+
 reg [11:0] current_color;
 
 

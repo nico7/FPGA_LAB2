@@ -50,24 +50,33 @@ module top_vga_tb;
     // Test sequence
     initial begin
         clk = 0;
-        rst = 1;
+      //  rst = 1;
         count = 4'h0;
         
         // Apply reset
-        #10 rst = 0;
+        #100 
+      //  rst = 0;
         
         // Test various colors
-        #10 count = 4'h1; // BLACK
-        #10 count = 4'h2; // RED
-        #10 count = 4'h3; // WHITE
-        #10 count = 4'h4; // GREEN
-        #10 count = 4'h5; // BLEU
-        #10 count = 4'h6; // PINK
-        #10 count = 4'h7; // GOLD
-        #10 count = 4'h0; // BLACK
+        #1000 
+        count = 4'h1; // BLACK
+        #1000 
+        count = 4'h2; // RED
+        #1000 
+        count = 4'h3; // WHITE
+        #1000 
+        count = 4'h4; // GREEN
+        #1000 
+        count = 4'h5; // BLEU
+        #1000 
+        count = 4'h6; // PINK
+        #1000 
+        count = 4'h7; // GOLD
+        #1000 
+        count = 4'h0; // BLACK
         
         // End simulation
-        #100 $finish;
+        #100000000 $finish;
     end
 endmodule
 

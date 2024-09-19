@@ -2,10 +2,10 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-// Date        : Thu Sep 19 00:28:27 2024
+// Date        : Thu Sep 19 00:54:58 2024
 // Host        : LAPTOP-QJ9BJU4G running 64-bit major release  (build 9200)
 // Command     : write_verilog -mode funcsim -nolib -force -file
-//               C:/Users/Nico/Documents/Projects/Firmware/FPGA_LAB2/VGA.sim/sim_1/synth/func/xsim/topLevel_func_synth.v
+//               C:/Users/Nico/Documents/Projects/Firmware/FPGA_LAB2/VGA.sim/sim_1/synth/func/xsim/topLevel_tb_func_synth.v
 // Design      : topLevel
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
